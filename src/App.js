@@ -1,22 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
   render() {
+    console.dir(this.props);
     return (
       <div className="App">
         <div>
-          <button type="button">
-            nowy użytkownik
-          </button>
+          <button type="button">nowy użytkownik</button>
           <label>
             mam token
-          <input type="text" />
+            <input type="text" />
           </label>
-          <button type="button">
-            wejdz z tokenem
-          </button>
+          <button type="button">wejdz z tokenem</button>
         </div>
 
         <hr />
@@ -46,28 +43,16 @@ class App extends Component {
           <table>
             <thead>
               <tr>
-                <th>
-                  Data
-                </th>
-                <th>
-                  Odczyt
-                </th>
-                <th>
-                  średnia dzienna
-                </th>
+                <th>Data</th>
+                <th>Odczyt</th>
+                <th>średnia dzienna</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>
-                  23-03-1990
-                </td>
-                <td>
-                  123456.654
-                </td>
-                <td>
-                  3
-                </td>
+                <td>23-03-1990</td>
+                <td>123456.654</td>
+                <td>3</td>
               </tr>
             </tbody>
           </table>
