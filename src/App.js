@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import NewEntryForm from "./NewEntryForm";
+import { observer } from "mobx-react";
 
 class App extends Component {
   render() {
@@ -26,15 +28,7 @@ class App extends Component {
         <hr />
 
         <div>
-          <label>
-            Nowy wpis
-            <input type="number" />
-          </label>
-          <label>
-            data
-            <input type="date" />
-          </label>
-          <button>Zapis</button>
+          <NewEntryForm meter={this.props.meter} />
         </div>
         <div>
           <table>
@@ -46,11 +40,15 @@ class App extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>23-03-1990</td>
-                <td>123456.654</td>
-                <td>3</td>
-              </tr>
+              {this.props.meter.entries.map(entry => {
+                return (
+                  <tr>
+                    <td>{String(entry.date)}</td>
+                    <td>{entry.value}</td>
+                    <td>[diff]</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -59,4 +57,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default observer(App);
