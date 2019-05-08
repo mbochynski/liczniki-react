@@ -40,12 +40,12 @@ class App extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.meter.entries.map(entry => {
+              {this.props.meter.entriesWithDiff.map(entry => {
                 return (
                   <tr>
                     <td>{String(entry.date)}</td>
                     <td>{entry.value}</td>
-                    <td>[diff]</td>
+                    <td>{entry.diff}</td>
                   </tr>
                 );
               })}
