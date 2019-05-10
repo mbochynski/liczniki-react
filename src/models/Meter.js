@@ -3,6 +3,7 @@ import MeterEntry from "./MeterEntry";
 
 const Meter = types
   .model({
+    id: types.identifier,
     name: types.string,
     entries: types.array(MeterEntry),
   })

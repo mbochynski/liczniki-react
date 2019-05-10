@@ -3,23 +3,45 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import Meter from "./models/Meter";
+import MeterCollection from "./models/MeterCollection";
 
-const meter = Meter.create({
-  name: "MST test",
-  entries: [
+const meterCollection = MeterCollection.create({
+  meters: [
     {
-      value: 123.321,
-      date: Date.now(),
+      id: "asdf",
+      name: "MST test",
+      entries: [
+        {
+          value: 123.321,
+          date: Date.now(),
+        },
+        {
+          value: 432.321,
+          date: Date.now(),
+        },
+      ],
     },
     {
-      value: 432.321,
-      date: Date.now(),
+      id: "fdsa",
+      name: "MST test 2",
+      entries: [
+        {
+          value: 3.321,
+          date: Date.now(),
+        },
+        {
+          value: 2.321,
+          date: Date.now(),
+        },
+      ],
     },
   ],
 });
 
-ReactDOM.render(<App meter={meter} />, document.getElementById("root"));
+ReactDOM.render(
+  <App meterCollection={meterCollection} />,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

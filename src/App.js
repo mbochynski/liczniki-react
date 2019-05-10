@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NewEntryForm from "./NewEntryForm";
 import { observer } from "mobx-react";
+import Meter from "./Meter";
 
 class App extends Component {
   render() {
@@ -14,44 +15,27 @@ class App extends Component {
           </label>
           <button type="button">wejdz z tokenem</button>
         </div>
-
         <hr />
         <label>
           nowy licznik
           <input type="text" />
         </label>
-
-        <button>licznik 1</button>
-        <button>licznik 2</button>
-        <button>licznik 3</button>
-
+        {this.props.meterCollection.meters.map(
+          ({ id: meterId, name: meterName }) => {
+            return (
+              <button
+                onClick={() => {
+                  this.props.meterCollection.selectMeter(meterId);
+                }}
+              >
+                {meterName}
+              </button>
+            );
+          }
+        )}
         <hr />
 
-        <div>
-          <NewEntryForm meter={this.props.meter} />
-        </div>
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Data</th>
-                <th>Odczyt</th>
-                <th>średnia dzienna</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.meter.entriesWithDiff.map(entry => {
-                return (
-                  <tr>
-                    <td>{String(entry.date)}</td>
-                    <td>{entry.value}</td>
-                    <td>{entry.diff}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <Meter meter={this.props.meterCollection.selectedMeter} />
       </div>
     );
   }
