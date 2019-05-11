@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import NewEntryForm from "./NewEntryForm";
 import { observer } from "mobx-react";
 import Meter from "./Meter";
 
@@ -20,10 +19,18 @@ class App extends Component {
           nowy licznik
           <input type="text" />
         </label>
+        <button
+          onClick={() => {
+            this.props.meterCollection.addNewMeter("Some new name");
+          }}
+        >
+          Dodaj
+        </button>
         {this.props.meterCollection.meters.map(
           ({ id: meterId, name: meterName }) => {
             return (
               <button
+                key={meterId}
                 onClick={() => {
                   this.props.meterCollection.selectMeter(meterId);
                 }}
