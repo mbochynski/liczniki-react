@@ -1,12 +1,13 @@
 const Chance = require("chance");
 const chance = new Chance();
 
-module.exports = () => {
+const generateSingleMeterEntries = () => {
   let preValue = 0;
+
   const entries = Array.from(Array(100), () => ({
-    date: chance.date(),
+    date: chance.date() * 1,
   }))
-    .sort(({ date: dateA }, { date: dateB }) => dateA * 1 - dateB * 1)
+    .sort(({ date: dateA }, { date: dateB }) => dateA - dateB)
     .map(({ date }) => {
       const newValue =
         preValue + chance.floating({ fixed: 3, min: 1, max: 100 });
@@ -15,5 +16,11 @@ module.exports = () => {
       return { date, value: newValue };
     });
 
-  return { entries };
+  return entries;
+};
+
+module.exports = () => {
+  const entriesCollection = Array.from(Array(100), generateSingleMeterEntries);
+
+  return { entriesCollection };
 };
