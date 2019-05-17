@@ -23,7 +23,7 @@ const Meter = ({ meter }) => {
           <tbody>
             {meter.entriesWithDiff.map(entry => {
               return (
-                <tr>
+                <tr key={entry.date * 1}>
                   <td>{String(entry.date)}</td>
                   <td>{entry.value}</td>
                   <td>{entry.diff}</td>
