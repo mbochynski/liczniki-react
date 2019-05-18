@@ -9,6 +9,9 @@ const MeterCollection = types
   })
   .actions(self => ({
     addNewMeter(name) {
+      if (!name) {
+        return;
+      }
       self.meters.push({
         id: nanoid(),
         name,
