@@ -1,5 +1,6 @@
 import { flow, types, applySnapshot } from "mobx-state-tree";
 import MeterEntry from "./MeterEntry";
+import { format } from "date-fns";
 
 const Meter = types
   .model({
@@ -15,7 +16,11 @@ const Meter = types
         .slice()
         .sort(({ date: dateA }, { date: dateB }) => dateA * 1 - dateB * 1)
         .map(({ value, date }) => {
-          const withDiff = { value, date, diff: value - previousValue };
+          const withDiff = {
+            value: value.toFixed(2),
+            date: format(date, "DD/MM/YYYY"),
+            diff: (value - previousValue).toFixed(2),
+          };
           previousValue = value;
           return withDiff;
         });
