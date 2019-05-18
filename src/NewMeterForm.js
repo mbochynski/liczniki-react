@@ -6,8 +6,9 @@ const NewMeterForm = ({ addNewMeter }) => {
 
   return (
     <>
+      <h1>Dodaj nowy licznik</h1>
       <label>
-        nowy licznik
+        Nazwa:
         <input
           value={newMeterName}
           onChange={e => setNewMeterName(e.target.value)}

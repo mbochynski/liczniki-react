@@ -6,6 +6,7 @@ import MeterCollection from "./models/MeterCollection";
 const MeterSelector = ({ meterCollection }) => {
   return (
     <>
+      <h1>Wybierz licznik</h1>
       {meterCollection.meters.map(({ id: meterId, name: meterName }) => {
         return (
           <button

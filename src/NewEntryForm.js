@@ -11,8 +11,9 @@ const NewEntryForm = ({ meter }) => {
         meter.addEntry(Number(value), new Date(date));
       }}
     >
+      <h1>Dodaj nowy odczyt</h1>
       <label>
-        Nowy wpis
+        wartość:
         <input
           name="value"
           type="number"
@@ -21,7 +22,7 @@ const NewEntryForm = ({ meter }) => {
         />
       </label>
       <label>
-        data
+        data:
         <input
           name="date"
           type="date"
@@ -29,7 +30,7 @@ const NewEntryForm = ({ meter }) => {
           onChange={event => setDate(event.target.value)}
         />
       </label>
-      <button type="submit">Zapis</button>
+      <button type="submit">Zapisz</button>
     </form>
   );
 };
