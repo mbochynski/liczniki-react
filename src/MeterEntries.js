@@ -2,30 +2,31 @@ import React from "react";
 import { observer } from "mobx-react";
 import modelOf from "./utils/modelOf";
 import Meter from "./models/Meter";
+import { Header, Table } from "semantic-ui-react";
 
 const MeterEntries = ({ meter }) => (
   <>
-    <h1>Tabela odczytów</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Odczyt</th>
-          <th>średnia dzienna</th>
-        </tr>
-      </thead>
-      <tbody>
+    <Header as="h1">Tabela odczytów</Header>
+    <Table striped>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Data</Table.HeaderCell>
+          <Table.HeaderCell>Odczyt</Table.HeaderCell>
+          <Table.HeaderCell>Różnica</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
         {meter.entriesWithDiff.map(entry => {
           return (
-            <tr key={entry.date}>
-              <td>{String(entry.date)}</td>
-              <td>{entry.value}</td>
-              <td>{entry.diff}</td>
-            </tr>
+            <Table.Row key={`${entry.date}${entry.value}`}>
+              <Table.Cell>{String(entry.date)}</Table.Cell>
+              <Table.Cell>{entry.value}</Table.Cell>
+              <Table.Cell>{entry.diff}</Table.Cell>
+            </Table.Row>
           );
         })}
-      </tbody>
-    </table>{" "}
+      </Table.Body>
+    </Table>
   </>
 );
 

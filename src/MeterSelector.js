@@ -2,21 +2,22 @@ import React from "react";
 import { observer } from "mobx-react";
 import modelOf from "./utils/modelOf";
 import MeterCollection from "./models/MeterCollection";
+import { Header, Button } from "semantic-ui-react";
 
 const MeterSelector = ({ meterCollection }) => {
   return (
     <>
-      <h1>Wybierz licznik</h1>
+      <Header as="h1">Wybierz licznik</Header>
       {meterCollection.meters.map(({ id: meterId, name: meterName }) => {
         return (
-          <button
+          <Button
             key={meterId}
             onClick={() => {
               meterCollection.selectMeter(meterId);
             }}
           >
             {meterName}
-          </button>
+          </Button>
         );
       })}
     </>

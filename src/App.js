@@ -5,10 +5,12 @@ import NewMeterForm from "./NewMeterForm";
 import MeterCollection from "./models/MeterCollection";
 import modelOf from "./utils/modelOf";
 import MeterSelector from "./MeterSelector";
+import "semantic-ui-css/semantic.min.css";
+import style from "./App.module.css";
 
 const App = ({ meterCollection }) => {
   return (
-    <div className="App">
+    <div className={style.App}>
       <NewMeterForm addNewMeter={meterCollection.addNewMeter} />
       <MeterSelector meterCollection={meterCollection} />
 
