@@ -4,7 +4,7 @@ const chance = new Chance();
 const generateSingleMeterEntries = () => {
   let preValue = 0;
 
-  const entries = Array.from(Array(100), () => ({
+  const entries = Array.from(Array(50), () => ({
     date: chance.date() * 1,
   }))
     .sort(({ date: dateA }, { date: dateB }) => dateA - dateB)
