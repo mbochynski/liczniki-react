@@ -1,9 +1,10 @@
 import { flow, types, applySnapshot } from "mobx-state-tree";
 import MeterEntry from "./MeterEntry";
 import { format } from "date-fns";
+import nanoid from "nanoid";
 
 const Meter = types
-  .model({
+  .model("Meter", {
     id: types.identifier,
     state: "idle",
     name: types.string,
@@ -32,6 +33,7 @@ const Meter = types
     addEntry(value, date) {
       self.entries.push(
         MeterEntry.create({
+          id: nanoid(),
           value,
           date,
         })

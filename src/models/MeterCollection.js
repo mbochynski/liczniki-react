@@ -3,7 +3,7 @@ import Meter from "./Meter";
 import nanoid from "nanoid";
 
 const MeterCollection = types
-  .model({
+  .model("MeterCollection", {
     meters: types.array(Meter),
     selectedMeter: types.maybe(types.reference(Meter)),
   })
