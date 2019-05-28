@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import modelOf from "./utils/modelOf";
 import Meter from "./models/Meter";
-import { Header, Table } from "semantic-ui-react";
+import { Header, Table, Button, Icon } from "semantic-ui-react";
 
 const MeterEntries = ({ meter }) => (
   <>
@@ -13,15 +13,27 @@ const MeterEntries = ({ meter }) => (
           <Table.HeaderCell>Data</Table.HeaderCell>
           <Table.HeaderCell>Odczyt</Table.HeaderCell>
           <Table.HeaderCell>Różnica</Table.HeaderCell>
+          <Table.HeaderCell>Akcje</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
         {meter.entriesWithDiff.map(entry => {
           return (
-            <Table.Row key={`${entry.date}${entry.value}`}>
+            <Table.Row key={entry.id}>
               <Table.Cell>{String(entry.date)}</Table.Cell>
               <Table.Cell>{entry.value}</Table.Cell>
               <Table.Cell>{entry.diff}</Table.Cell>
+              <Table.Cell>
+                <Button.Group icon>
+                  <Button
+                    onClick={() => {
+                      meter.removeEntry(entry.id);
+                    }}
+                  >
+                    <Icon name="trash" />
+                  </Button>
+                </Button.Group>
+              </Table.Cell>
             </Table.Row>
           );
         })}

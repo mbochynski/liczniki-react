@@ -1,4 +1,5 @@
 const Chance = require("chance");
+const nanoid = require("nanoid");
 const chance = new Chance();
 
 const generateSingleMeterEntries = () => {
@@ -13,7 +14,7 @@ const generateSingleMeterEntries = () => {
         preValue + chance.floating({ fixed: 3, min: 1, max: 100 });
       preValue = newValue;
 
-      return { date, value: newValue };
+      return { date, value: newValue, id: nanoid() };
     });
 
   return entries;

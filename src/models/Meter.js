@@ -15,15 +15,17 @@ const Meter = types
       return self.entries
         .slice()
         .sort(({ date: dateA }, { date: dateB }) => dateA * 1 - dateB * 1)
-        .map(({ value, date }) => {
+        .map(({ value, date, ...rest }) => {
           const withDiff = {
+            ...rest,
             value: value.toFixed(2),
             date: format(date, "DD/MM/YYYY"),
             diff: (value - previousValue).toFixed(2),
           };
           previousValue = value;
           return withDiff;
-        });
+        })
+        .reverse();
     },
   }))
   .actions(self => ({
@@ -33,6 +35,12 @@ const Meter = types
           value,
           date,
         })
+      );
+    },
+    removeEntry(entryId) {
+      self.entries.splice(
+        self.entries.findIndex(({ id }) => id === entryId),
+        1
       );
     },
 

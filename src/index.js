@@ -4,39 +4,22 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import MeterCollection from "./models/MeterCollection";
+import { onSnapshot, onPatch } from "mobx-state-tree";
+import makeInspectable from "mobx-devtools-mst";
 
 const meterCollection = MeterCollection.create({
-  meters: [
-    {
-      id: "asdf",
-      name: "MST test",
-      entries: [
-        {
-          value: 123.321,
-          date: Date.now(),
-        },
-        {
-          value: 432.321,
-          date: Date.now(),
-        },
-      ],
-    },
-    {
-      id: "fdsa",
-      name: "MST test 2",
-      entries: [
-        {
-          value: 3.321,
-          date: Date.now(),
-        },
-        {
-          value: 2.321,
-          date: Date.now(),
-        },
-      ],
-    },
-  ],
+  meters: [],
 });
+
+makeInspectable(meterCollection);
+
+// onSnapshot(meterCollection, snapshot => {
+//   console.log("snapshot", snapshot);
+// });
+
+// onPatch(meterCollection, patch => {
+//   console.log("patch", patch);
+// });
 
 ReactDOM.render(
   <App meterCollection={meterCollection} />,
